@@ -108,6 +108,94 @@ python
 | Circular Queue    | O(1)         | O(1)       | O(n)            |
 | List Operations   | O(1)/O(n)    | O(n)       | O(n)            |
 
+# Data Structures Time & Space Complexity
+
+## 📊 Array/List Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Access                 | O(1)         | O(1)       | O(1)            |
+| Search                 | O(n)         | O(n)       | O(1)            |
+| Binary Search (sorted) | O(log n)     | O(log n)   | O(1)            |
+| Insertion (at end)     | O(1)         | O(1)       | O(1)            |
+| Insertion (at start)   | O(n)         | O(n)       | O(1)            |
+| Deletion (at end)      | O(1)         | O(1)       | O(1)            |
+| Deletion (at start)    | O(n)         | O(n)       | O(1)            |
+
+## 📚 Stack & Queue Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Stack Push             | O(1)         | O(1)       | O(1)            |
+| Stack Pop              | O(1)         | O(1)       | O(1)            |
+| Stack Peek             | O(1)         | O(1)       | O(1)            |
+| Queue Enqueue          | O(1)         | O(1)       | O(1)            |
+| Queue Dequeue          | O(1)         | O(1)       | O(1)            |
+| Queue Peek             | O(1)         | O(1)       | O(1)            |
+| Circular Queue All Ops | O(1)         | O(1)       | O(1)            |
+
+## 🔗 Linked List Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Access                 | O(n)         | O(n)       | O(1)            |
+| Search                 | O(n)         | O(n)       | O(1)            |
+| Insertion (at start)   | O(1)         | O(1)       | O(1)            |
+| Insertion (at end)*    | O(1)         | O(1)       | O(1)            |
+| Insertion (at middle)  | O(n)         | O(n)       | O(1)            |
+| Deletion (at start)    | O(1)         | O(1)       | O(1)            |
+| Deletion (at end)      | O(n)         | O(n)       | O(1)            |
+| Deletion (at middle)   | O(n)         | O(n)       | O(1)            |
+
+## 🗺️ Hash Table Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Insertion              | O(1)         | O(n)       | O(n)            |
+| Deletion               | O(1)         | O(n)       | O(1)            |
+| Search                 | O(1)         | O(n)       | O(1)            |
+| Access                 | O(1)         | O(n)       | O(1)            |
+
+## 🌳 Binary Search Tree Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Access                 | O(log n)     | O(n)       | O(1)            |
+| Search                 | O(log n)     | O(n)       | O(1)            |
+| Insertion              | O(log n)     | O(n)       | O(1)            |
+| Deletion               | O(log n)     | O(n)       | O(1)            |
+
+## 🔄 AVL Tree Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Access                 | O(log n)     | O(log n)   | O(1)            |
+| Search                 | O(log n)     | O(log n)   | O(1)            |
+| Insertion              | O(log n)     | O(log n)   | O(1)            |
+| Deletion               | O(log n)     | O(log n)   | O(1)            |
+
+## 📊 Heap Operations
+| Operation               | Average Case | Worst Case | Space Complexity |
+|------------------------|--------------|------------|------------------|
+| Build Heap             | O(n)         | O(n)       | O(n)            |
+| Insert                 | O(log n)     | O(log n)   | O(1)            |
+| Delete                 | O(log n)     | O(log n)   | O(1)            |
+| Get Min/Max            | O(1)         | O(1)       | O(1)            |
+| Heapify                | O(log n)     | O(log n)   | O(1)            |
+
+## 🕸️ Graph Operations (Adjacency List)
+| Operation                     | Average Case | Worst Case | Space Complexity |
+|------------------------------|--------------|------------|------------------|
+| Add Vertex                   | O(1)         | O(1)       | O(1)            |
+| Add Edge                     | O(1)         | O(1)       | O(1)            |
+| Remove Vertex                | O(V + E)     | O(V + E)   | O(1)            |
+| Remove Edge                  | O(E)         | O(E)       | O(1)            |
+| DFS                         | O(V + E)     | O(V + E)   | O(V)            |
+| BFS                         | O(V + E)     | O(V + E)   | O(V)            |
+
+### Notes:
+- V = number of vertices
+- E = number of edges
+- n = number of elements
+- *For Linked List: O(1) insertion at end assumes we maintain a tail pointer
+- Worst case for Hash Table operations occurs when there are many collisions
+- BST operations' worst case occurs with an unbalanced tree
+- Space complexity often refers to extra space needed beyond input storage
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
