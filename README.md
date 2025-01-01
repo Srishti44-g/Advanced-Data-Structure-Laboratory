@@ -65,7 +65,7 @@ Advanced queue implementation with circular array structure.
 ### Running the Programs
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/advanced-data-structures-lab.git
+   git clone[ https://github.com/yourusername/advanced-data-structures-lab.git](https://github.com/Srishti44-g/Advanced-Data-Structure-Laboratroy)
    cd advanced-data-structures-lab
 2. Navigate to specific experiment directory:
    cd experiments/01_searching
