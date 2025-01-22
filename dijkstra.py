@@ -1,72 +1,57 @@
-from priority_queue import PriorityQueue
-from collections import defaultdict
+import heapq
 
-class Graph:
-    """Graph implementation for Dijkstra's algorithm"""
-    
-    def __init__(self):
-        self.graph = defaultdict(list)
-        
-    def add_edge(self, src, dest, weight):
-        """Add an edge to the graph"""
-        self.graph[src].append((dest, weight))
-        self.graph[dest].append((src, weight))  # For undirected graph
-        
-    def dijkstra(self, start):
-        """
-        Implement Dijkstra's algorithm for shortest path
-        
-        Args:
-            start: Starting vertex
-            
-        Returns:
-            dict: Shortest distances to all vertices
-        """
-        # Initialize distances
-        distances = {vertex: float('infinity') for vertex in self.graph}
-        distances[start] = 0
-        
-        # Priority queue to store vertices and their distances
-        pq = PriorityQueue()
-        pq.insert((0, start))  # (distance, vertex)
-        
-        # Track visited vertices
-        visited = set()
-        
-        while len(visited) < len(self.graph):
-            # Get vertex with minimum distance
-            current_distance, current_vertex = pq.extract_min()
-            
-            if current_vertex in visited:
-                continue
-                
-            visited.add(current_vertex)
-            
-            # Update distances to neighbors
-            for neighbor, weight in self.graph[current_vertex]:
-                if neighbor not in visited:
-                    distance = current_distance + weight
-                    if distance < distances[neighbor]:
-                        distances[neighbor] = distance
-                        pq.insert((distance, neighbor))
-                        
-        return distances
+def dijkstra(graph, start):
+    # Dictionary to store the shortest distance from the start node to each node
+    shortest_distances = {node: float('inf') for node in graph}
+    shortest_distances[start] = 0
 
-# Test implementation
-if __name__ == "__main__":
-    g = Graph()
-    # Add edges to the graph
-    g.add_edge('A', 'B', 4)
-    g.add_edge('A', 'C', 2)
-    g.add_edge('B', 'C', 1)
-    g.add_edge('B', 'D', 5)
-    g.add_edge('C', 'D', 8)
-    g.add_edge('C', 'E', 10)
-    g.add_edge('D', 'E', 2)
-    
-    start_vertex = 'A'
-    distances = g.dijkstra(start_vertex)
-    
-    print(f"Shortest distances from vertex {start_vertex}:")
-    for vertex, distance in distances.items():
-        print(f"To {vertex}: {distance}") 
+    # Priority queue to store (distance, node) tuples
+    priority_queue = [(0, start)]
+
+    # Dictionary to store the shortest path to each node
+    previous_nodes = {node: None for node in graph}
+
+    while priority_queue:
+        current_distance, current_node = heapq.heappop(priority_queue)
+
+        # Skip processing if a shorter path to the node has already been found
+        if current_distance > shortest_distances[current_node]:
+            continue
+
+        # Explore neighbors of the current node
+        for neighbor, weight in graph[current_node].items():
+            distance = current_distance + weight
+
+            # If a shorter path to the neighbor is found
+            if distance < shortest_distances[neighbor]:
+                shortest_distances[neighbor] = distance
+                previous_nodes[neighbor] = current_node
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return shortest_distances, previous_nodes
+
+def reconstruct_path(previous_nodes, start, target):
+    path = []
+    current = target
+    while current is not None:
+        path.append(current)
+        current = previous_nodes[current]
+    path.reverse()
+    return path if path[0] == start else []
+
+# Example usage
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 6},
+    'C': {'A': 4, 'B': 2, 'D': 3},
+    'D': {'B': 6, 'C': 3}
+}
+
+start_node = 'A'
+target_node = 'D'
+
+shortest_distances, previous_nodes = dijkstra(graph, start_node)
+shortest_path = reconstruct_path(previous_nodes, start_node, target_node)
+
+print("Shortest distances from node", start_node, ":", shortest_distances)
+print("Shortest path from", start_node, "to", target_node, ":", shortest_path)
